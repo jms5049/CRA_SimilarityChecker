@@ -1,0 +1,1 @@
+# CRA Similarity Checker (TDD)
