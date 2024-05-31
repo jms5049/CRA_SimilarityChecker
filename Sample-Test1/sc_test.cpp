@@ -3,6 +3,6 @@
 
 TEST(SimilarityCheck, PointMaxforEqualLength) {
 	SimilarityChecker sc;
-	int result = sc.doCheck("ab", "cd");
+	int result = sc.countString("ab", "cd");
 	EXPECT_EQ(60, result);
 }

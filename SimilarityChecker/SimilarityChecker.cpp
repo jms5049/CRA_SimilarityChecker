@@ -4,7 +4,7 @@ using namespace std;
 class SimilarityChecker {
 
 public:
-	int doCheck(string a, string b) {
+	int countString(string a, string b) {
 		if (a.length() == b.length())
 			return 60;
 	}
