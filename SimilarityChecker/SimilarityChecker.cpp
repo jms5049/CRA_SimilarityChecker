@@ -5,6 +5,30 @@ using namespace std;
 class SimilarityChecker {
 
 public:
+	bool equalArrays(int x[], int y[]) {
+		for (int i = 0; i < 26; ++i) {
+			if (x[i] != y[i])
+				return false;
+		}
+		return true;
+	}
+	int countAlpha(string a, string b) {
+		int aLen = a.length();
+		int bLen = b.length();
+		int aAlpha[26] = {};
+		int bAlpha[26] = {};
+		for (int i = 0; i < aLen; i++)
+			aAlpha[a[i] - 'A']++;
+		for (int i = 0; i < bLen; i++)
+			bAlpha[b[i] - 'A']++;
+
+		if (aLen == bLen)
+			if (equalArrays(aAlpha, bAlpha))
+				return 40;
+
+		return 0;
+	}
+
 	int countString(string a, string b) {
 		int aLen = a.length();
 		int bLen = b.length();

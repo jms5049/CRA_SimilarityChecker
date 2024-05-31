@@ -18,3 +18,9 @@ TEST(SimilarityCheck, PointforDiffLength) {
 	int result = sc.countString("abcd", "bcd");
 	EXPECT_EQ(40, result);
 }
+
+TEST(SimilarityCheck, CheckAlphaMax) {
+	SimilarityChecker sc;
+	int result = sc.countAlpha("ASD", "DSA");
+	EXPECT_EQ(40, result);
+}
