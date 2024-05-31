@@ -26,6 +26,9 @@ public:
 		int bLen = b.length();
 		int aAlphaCounter[26] = {};
 		int bAlphaCounter[26] = {};
+		bool alphabetFlag[26] = {};
+		int totalCount = 0;
+		int sameCount = 0;
 
 		countAlphabet(a, aAlphaCounter);
 		countAlphabet(b, bAlphaCounter);
@@ -34,7 +37,16 @@ public:
 			if (equalArrays(aAlphaCounter, bAlphaCounter))
 				return 40;
 
-		return 0;
+		for (int i = 0; i < 26; i++) {
+			if ((aAlphaCounter[i] || bAlphaCounter[i]) && alphabetFlag[i] == 0) {
+				totalCount++;
+				alphabetFlag[i] = 1;
+				if ((aAlphaCounter[i] && bAlphaCounter[i]))
+					sameCount++;
+			}
+		}
+
+		return double(sameCount) / double(totalCount) * 40;
 	}
 
 	int countString(string a, string b) {

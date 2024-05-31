@@ -19,10 +19,18 @@ TEST(SimilarityCheck, PointforDiffLength) {
 	EXPECT_EQ(40, result);
 }
 
-TEST(SimilarityCheck, CheckAlphaMax) {
+TEST(SimilarityCheck, CheckAlpha) {
 	SimilarityChecker sc;
 	int result = sc.countAlpha("ASD", "DSA");
 	EXPECT_EQ(40, result);
+	result = sc.countAlpha("A", "BB");
+	EXPECT_EQ(0, result);
+}
+
+TEST(SimilarityCheck, CheckAlphaSubpoint) {
+	SimilarityChecker sc;
+	int result = sc.countAlpha("AA", "AAE");
+	EXPECT_EQ(20, result);
 }
 
 TEST(SimilarityCheck, CheckInvalid) {
