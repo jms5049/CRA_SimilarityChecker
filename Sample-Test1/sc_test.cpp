@@ -12,3 +12,9 @@ TEST(SimilarityCheck, PointZeroforDoubleLength) {
 	int result = sc.countString("abcd", "cd");
 	EXPECT_EQ(0, result);
 }
+
+TEST(SimilarityCheck, PointforDiffLength) {
+	SimilarityChecker sc;
+	int result = sc.countString("abcd", "bcd");
+	EXPECT_EQ(40, result);
+}
