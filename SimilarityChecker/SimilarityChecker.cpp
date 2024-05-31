@@ -12,15 +12,23 @@ public:
 		}
 		return true;
 	}
+
 	int countAlpha(string a, string b) {
 		int aLen = a.length();
 		int bLen = b.length();
 		int aAlpha[26] = {};
 		int bAlpha[26] = {};
-		for (int i = 0; i < aLen; i++)
+
+		for (int i = 0; i < aLen; i++) {
+			if(a[i] >= 97)
+				return
 			aAlpha[a[i] - 'A']++;
-		for (int i = 0; i < bLen; i++)
+		}
+		for (int i = 0; i < bLen; i++) {
+			if (b[i] >= 97)
+				return
 			bAlpha[b[i] - 'A']++;
+		}
 
 		if (aLen == bLen)
 			if (equalArrays(aAlpha, bAlpha))

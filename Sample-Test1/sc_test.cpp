@@ -24,3 +24,8 @@ TEST(SimilarityCheck, CheckAlphaMax) {
 	int result = sc.countAlpha("ASD", "DSA");
 	EXPECT_EQ(40, result);
 }
+
+TEST(SimilarityCheck, CheckInvalid) {
+	SimilarityChecker sc;
+	int result = sc.countAlpha("asd", "dsa");
+}
