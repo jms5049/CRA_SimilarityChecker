@@ -5,9 +5,15 @@ class SimilarityChecker {
 
 public:
 	int countString(string a, string b) {
-		if (a.length() == b.length())
-			return 60;
-		if (a.length() * 2 == b.length() || b.length() * 2 == a.length())
-			return 0;
+		int aLen = a.length();
+		int bLen = b.length();
+		int result = 0;
+
+		if (aLen == bLen)
+			return result = 60;
+
+		if (aLen >= bLen * 2 || aLen * 2 <= bLen)
+			return result = 0;
+
 	}
 };
