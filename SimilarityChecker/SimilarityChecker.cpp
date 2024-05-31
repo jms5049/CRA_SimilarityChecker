@@ -13,25 +13,25 @@ public:
 		return true;
 	}
 
+	void countAlphabet(string word, int counter[]) {
+
+		for (int i = 0; i < word.length(); i++) {
+			if (word[i] >= 97)	return;
+				counter[word[i] - 'A']++;
+		}
+	}
+
 	int countAlpha(string a, string b) {
 		int aLen = a.length();
 		int bLen = b.length();
-		int aAlpha[26] = {};
-		int bAlpha[26] = {};
+		int aAlphaCounter[26] = {};
+		int bAlphaCounter[26] = {};
 
-		for (int i = 0; i < aLen; i++) {
-			if(a[i] >= 97)
-				return
-			aAlpha[a[i] - 'A']++;
-		}
-		for (int i = 0; i < bLen; i++) {
-			if (b[i] >= 97)
-				return
-			bAlpha[b[i] - 'A']++;
-		}
+		countAlphabet(a, aAlphaCounter);
+		countAlphabet(b, bAlphaCounter);
 
 		if (aLen == bLen)
-			if (equalArrays(aAlpha, bAlpha))
+			if (equalArrays(aAlphaCounter, bAlphaCounter))
 				return 40;
 
 		return 0;
