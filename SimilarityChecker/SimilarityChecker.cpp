@@ -3,10 +3,9 @@
 using namespace std;
 
 class SimilarityChecker {
-	string originA;
-	string originB;
-	int aLen = 0;
-	int bLen = 0;
+	string originA, originB;
+	int aLen, bLen;
+	bool lowerCase;
 
 public:
 	void setString(string a, string b) {
@@ -14,6 +13,7 @@ public:
 		originB = b;
 		aLen = a.length();
 		bLen = b.length();
+		lowerCase = false;
 	}
 
 	bool equalArrays(int x[], int y[]) {
@@ -27,7 +27,10 @@ public:
 	void countAlphabet(string word, int counter[]) {
 
 		for (int i = 0; i < word.length(); i++) {
-			if (word[i] >= 97)	return;
+			if (word[i] >= 97) {
+				lowerCase = true;
+				return;
+			}
 			counter[word[i] - 'A']++;
 		}
 	}
@@ -51,10 +54,12 @@ public:
 	int calcAlphaPoint() {
 		int aAlphaCounter[26] = {};
 		int bAlphaCounter[26] = {};
-		int zero[26] = { 0 };
 
 		countAlphabet(originA, aAlphaCounter);
 		countAlphabet(originB, bAlphaCounter);
+
+		if (lowerCase)
+			return 0;
 
 		if (aLen == bLen)
 			if (equalArrays(aAlphaCounter, bAlphaCounter))
