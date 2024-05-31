@@ -3,8 +3,19 @@
 using namespace std;
 
 class SimilarityChecker {
+	string originA;
+	string originB;
+	int aLen = 0;
+	int bLen = 0;
 
 public:
+	void setString(string a, string b) {
+		originA = a;
+		originB = b;
+		aLen = a.length();
+		bLen = b.length();
+	}
+
 	bool equalArrays(int x[], int y[]) {
 		for (int i = 0; i < 26; ++i) {
 			if (x[i] != y[i])
@@ -17,50 +28,51 @@ public:
 
 		for (int i = 0; i < word.length(); i++) {
 			if (word[i] >= 97)	return;
-				counter[word[i] - 'A']++;
+			counter[word[i] - 'A']++;
 		}
 	}
-
-	int countAlpha(string a, string b) {
-		int aLen = a.length();
-		int bLen = b.length();
-		int aAlphaCounter[26] = {};
-		int bAlphaCounter[26] = {};
-		bool alphabetFlag[26] = {};
+	double countSubpoint(int aAlphaCounter[], int bAlphaCounter[]) {
+		bool alphaFlag[26] = {};
 		int totalCount = 0;
 		int sameCount = 0;
 
-		countAlphabet(a, aAlphaCounter);
-		countAlphabet(b, bAlphaCounter);
+		for (int i = 0; i < 26; i++) {
+			if ((aAlphaCounter[i] || bAlphaCounter[i]) && alphaFlag[i] == 0) {
+				totalCount++;
+				alphaFlag[i] = 1;
+				if ((aAlphaCounter[i] && bAlphaCounter[i]))
+					sameCount++;
+			}
+		}
+		if (sameCount == 0)
+			return 0;
+		return double(totalCount) / double(sameCount);
+	}
+	int calcAlphaPoint() {
+		int aAlphaCounter[26] = {};
+		int bAlphaCounter[26] = {};
+		int zero[26] = { 0 };
+
+		countAlphabet(originA, aAlphaCounter);
+		countAlphabet(originB, bAlphaCounter);
 
 		if (aLen == bLen)
 			if (equalArrays(aAlphaCounter, bAlphaCounter))
 				return 40;
 
-		for (int i = 0; i < 26; i++) {
-			if ((aAlphaCounter[i] || bAlphaCounter[i]) && alphabetFlag[i] == 0) {
-				totalCount++;
-				alphabetFlag[i] = 1;
-				if ((aAlphaCounter[i] && bAlphaCounter[i]))
-					sameCount++;
-			}
-		}
-
-		return double(sameCount) / double(totalCount) * 40;
+		double subVar = countSubpoint(aAlphaCounter, bAlphaCounter);
+		return subVar * 40;
 	}
 
-	int countString(string a, string b) {
-		int aLen = a.length();
-		int bLen = b.length();
-		int result = 0;
+	int calcCountPoint() {
 
 		if (aLen == bLen)
-			return result = 60;
+			return 60;
 
 		if (aLen >= bLen * 2 || aLen * 2 <= bLen)
-			return result = 0;
+			return 0;
 
-		double coef = getCoefficient(aLen, bLen);		
+		double coef = getCoefficient(aLen, bLen);
 		return (1 - coef) * 60;
 	}
 
